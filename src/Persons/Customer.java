@@ -1,9 +1,10 @@
 package Persons;
 import Pasiv.*;
+import Lockers.*;
 
 public class Customer extends Human{
 	private int id;
-	private int locker;
+	private Locker locker;
 	private Trainer trainer;
 	private Membership membership;
 	
@@ -39,10 +40,10 @@ public class Customer extends Human{
 		this.id = this.getAge()*this.getName().hashCode();
 	}
 	
-	public int getLocker() {
+	public Locker getLocker() {
 		return this.locker;
 	}
-	public void setLocker(int locker) {
+	public void setLocker(Locker locker) {
 		this.locker = locker;
 	}
 	

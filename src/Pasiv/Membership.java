@@ -1,4 +1,6 @@
 package Pasiv;
+import java.util.Calendar;
+
 import Persons.*;
 public  class Membership {
 	private String type;
@@ -29,6 +31,27 @@ public  class Membership {
 		this.price = price;
 	}
 	
+	//metody pre Membership_Term
+	public int getTimePeriod() {
+		return 0;
+	}
+	
+	public Calendar getExpDate() {
+		return Calendar.getInstance();
+	}
+	
+	public void showExpDate() {};
+	
+	//metody pre Membership_Visits
+	public int getVisitsLeft() {
+		return 0;
+	}
+	
+	public void showVisitsLeft() {}
+	
+	public boolean remOneVisit() {
+		return false;
+	}
 	
 	
 }
