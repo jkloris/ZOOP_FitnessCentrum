@@ -1,5 +1,6 @@
 package Main;
 import Persons.*;
+import Calendar.*;
 import Lockers.*;
 
 import java.text.SimpleDateFormat;
@@ -36,14 +37,18 @@ public class Main {
 		//System.out.println(mt.getPrice());
 		//mt.showExpDate();
 		
+//		
+//		LockerManager lm = LockerManager.getInstance();
+//		lm.assignLocker(ty);
+//		lm.assignLocker(on);
+//		lm.assignLocker(ja);
+//		lm.assignLocker(ono);
+//		lm.freeLocker(ja);
+//		lm.showAllLockers();
 		
-		LockerManager lm = LockerManager.getInstance();
-		lm.assignLocker(ty);
-		lm.assignLocker(on);
-		lm.assignLocker(ja);
-		lm.assignLocker(ono);
-		lm.freeLocker(ja);
-		lm.showAllLockers();
+		Schedule schedule = new Schedule();
+		schedule.assignCustomer(ty, 2, 14);
+		schedule.showSchedule();
 		
 	}
 
