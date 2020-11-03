@@ -46,9 +46,7 @@ public class Main {
 //		lm.freeLocker(ja);
 //		lm.showAllLockers();
 		
-		Schedule schedule = new Schedule();
-		schedule.assignCustomer(ty, 2, 14);
-		schedule.showSchedule();
+		tr1.getSchedule().showSchedule();
 		
 	}
 
