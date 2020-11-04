@@ -37,6 +37,16 @@ public class Membership_Term extends Membership {
 	public void showExpDate() {
 		System.out.println(sdf.format(this.getExpDate().getTime()));
 	}
+	
+	public boolean onArrival() {
+		Calendar now = Calendar.getInstance();
+		if(now.after(this.getExpDate()) ) {
+			System.out.println("Platnost permanentky vyprsala");
+			return false;
+		}
+		return true;
+		
+	}
 
 	
 	

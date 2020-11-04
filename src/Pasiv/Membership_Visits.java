@@ -38,4 +38,11 @@ public class Membership_Visits extends Membership{
 		}
 		return true;
 	}
+	
+	
+	public boolean onArrival() {
+		if(this.remOneVisit())
+			return true;
+		return false;
+	}
 }

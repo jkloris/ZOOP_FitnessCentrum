@@ -26,6 +26,10 @@ public  class Membership {
 	public int getPrice() {
 		return this.price;
 	}
+	
+	public boolean onArrival() {
+		return true;
+	}
 
 	protected void setPrice(int price) {
 		this.price = price;

@@ -19,7 +19,13 @@ public class Main {
 		Customer ono = new Customer("Ono", 15);
 		Trainer tr1 = new Trainer("Trendo", 23, "kardio", 10);
 		
-//		ja.setMembership(new Membership_Term(10));
+		
+		Gym gym = Gym.getInstance();
+		
+		gym.customerManager.customerArrived(gym.customerManager.identifyCustomer("Ja", 21));
+		gym.customerManager.registerCustomer(ja);
+		gym.customerManager.identifyCustomer("Ja", 21).setMembership(new Membership_Visits(10));
+		gym.customerManager.customerArrived(ja);
 //		ja.getMembership().showExpDate();
 //		System.out.println(ja.getMembership().getType());
 //		
@@ -46,7 +52,7 @@ public class Main {
 //		lm.freeLocker(ja);
 //		lm.showAllLockers();
 		
-		tr1.getSchedule().showSchedule();
+		//tr1.getSchedule().showSchedule();
 		
 	}
 
