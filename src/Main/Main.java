@@ -1,13 +1,13 @@
 package Main;
 import Persons.*;
+import UnplacedManagers.*;
 import Calendar.*;
 import Lockers.*;
+import Pasiv.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
-import Pasiv.*;
 
 public class Main {
 
@@ -22,10 +22,23 @@ public class Main {
 		
 		Gym gym = Gym.getInstance();
 		
-		gym.customerManager.customerArrived(gym.customerManager.identifyCustomer("Ja", 21));
-		gym.customerManager.registerCustomer(ja);
-		gym.customerManager.identifyCustomer("Ja", 21).setMembership(new Membership_Visits(10));
-		gym.customerManager.customerArrived(ja);
+		
+		StoreManager store = StoreManager.getInstance();
+		store.restock(new Product("BCAA", "regen", 9.99f));
+		store.restock(new Product("Protein", "regen", 4.99f));
+		store.restock(new Product("Protein_deluxe", "regen", 9.5f));
+		store.restock(new Product("Proteinova tycinka", "regen", 3.99f));
+		store.restock(new Product("Protein", "regen", 9.99f));
+		store.restock(new Product("Protein", "regen", 9.99f));
+		store.restock(new Product("Protein", "regen", 9.99f));
+		
+		
+		store.showProductsInStock();
+		
+//		gym.customerManager.customerArrived(gym.customerManager.identifyCustomer("Ja", 21));
+//		gym.customerManager.registerCustomer(ja);
+//		gym.customerManager.identifyCustomer("Ja", 21).setMembership(new Membership_Visits(10));
+//		gym.customerManager.customerArrived(ja);
 //		ja.getMembership().showExpDate();
 //		System.out.println(ja.getMembership().getType());
 //		

@@ -5,7 +5,7 @@ import Pasiv.*;
 import Persons.Customer;
 
 public class CustomerManager {
-	static CustomerManager instance = null;
+	private static CustomerManager instance = null;
 	private ArrayList<Customer> regCustomers = new ArrayList<Customer>();
 	private ArrayList<Customer> customersInside = new ArrayList<Customer>();
 	private int customerLimit = 50;
@@ -38,6 +38,7 @@ public class CustomerManager {
 			if(this.getRegCustomers().indexOf(customer) >= 0 ) {
 				if( customer.getMembership()!= null && customer.getMembership().onArrival()) {
 					this.getCustomersInside().add(customer);
+					
 					System.out.println("Mozete ist cvicit");
 					return true;
 				} else {
