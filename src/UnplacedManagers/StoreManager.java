@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class StoreManager {
 	private static StoreManager instance = null;
 	private ArrayList<Product> productsInStock = new ArrayList<Product>();
-	private float moneyLeft = 1000;
+	private float storeRevenue = 1000;
 	
 	private StoreManager() {}
 	
@@ -15,11 +15,11 @@ public class StoreManager {
 		return instance;
 	}
 	
-	public void setMoneyLeft(float money) {
-		this.moneyLeft = money;
+	public void setStoreRevenue(float money) {
+		this.storeRevenue = money;
 	}
-	public float getMoneyLeft() {
-		return this.moneyLeft;
+	public float getStoreRevenue() {
+		return this.storeRevenue;
 	}
 	
 	public ArrayList<Product> getProductsInStock() {
@@ -36,7 +36,7 @@ public class StoreManager {
 	
 	public boolean restock(Product product) {
 		int i;
-		if(this.getMoneyLeft() - product.getCostPrice() > 0) {
+		if(this.getStoreRevenue() - product.getCostPrice() > 0) {
 			for( i = 0; i < this.getProductsInStock().size(); i++) {
 				if(product.getName() == this.getProductsInStock().get(i).getName()) {
 					this.getProductsInStock().get(i).setCount(this.getProductsInStock().get(i).getCount()+1);
@@ -46,7 +46,7 @@ public class StoreManager {
 			if(i == this.getProductsInStock().size()) {
 				this.getProductsInStock().add(product);
 			}
-			this.setMoneyLeft(this.getMoneyLeft() - product.getCostPrice());
+			this.setStoreRevenue(this.getStoreRevenue() - product.getCostPrice());
 			return true;
 		}
 		System.out.println("Nedostatok penazi");

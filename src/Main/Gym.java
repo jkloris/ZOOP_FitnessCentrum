@@ -5,12 +5,16 @@ import Lockers.LockerManager;
 import Pasiv.*;
 import Persons.*;
 import UnplacedManagers.CustomerManager;
+import UnplacedManagers.MembershipManager;
+import UnplacedManagers.StoreManager;
 
 public class Gym {
 	static Gym instance = null;
 	private ArrayList<Trainer> trainers = new ArrayList<Trainer>();
 	public LockerManager lockerManager = LockerManager.getInstance();
 	public CustomerManager customerManager = CustomerManager.getInstance();
+	public StoreManager storeManager = StoreManager.getInstance();
+	public MembershipManager membershipManager = MembershipManager.getInstance();
 	private Gym() {
 		
 	}
