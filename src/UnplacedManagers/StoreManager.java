@@ -11,7 +11,7 @@ public class StoreManager {
 	
 	public static StoreManager getInstance() {
 		if(instance == null)
-			return new StoreManager();
+			instance = new StoreManager();
 		return instance;
 	}
 	
@@ -50,6 +50,25 @@ public class StoreManager {
 			return true;
 		}
 		System.out.println("Nedostatok penazi");
+		return false;
+	}
+	
+	public boolean sellProduct(Product product) {
+		int index = this.getProductsInStock().indexOf(product);
+		if( index >= 0 ) {
+			System.out.println("Nakup prebehol uspesne");
+			int count = this.getProductsInStock().get(index).getCount();
+			if( count > 1) {
+				this.getProductsInStock().get(index).setCount(count - 1);
+			}else if(count == 1) {
+				this.getProductsInStock().get(index).setCount(count - 1);
+				System.out.println("Tento produkt bol posledny na sklade");
+			}else {
+				System.out.println("Produkt nie je na sklade");
+				return false;
+			}
+		}
+		System.out.println("Produkt nebol najdeny");
 		return false;
 	}
 }

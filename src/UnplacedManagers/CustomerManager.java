@@ -16,7 +16,7 @@ public class CustomerManager {
 	
 	public static CustomerManager getInstance() {
 		if(instance == null)
-			return new CustomerManager();
+			 instance = new CustomerManager();
 		return instance;
 	}
 	
@@ -94,6 +94,8 @@ public class CustomerManager {
 		int id = age * name.hashCode();
 		return identifyCustomer(id);
 	}
+	
+	
 	
 	
 }

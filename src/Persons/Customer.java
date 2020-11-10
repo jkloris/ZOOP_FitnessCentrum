@@ -8,12 +8,15 @@ public class Customer extends Human{
 	private Trainer trainer;
 	private Membership membership;
 	
+	public Customer(String name, int age) {
+		super( name, age);
+		this.setId();
+	}
+	
 	public Membership getMembership() {	
 		return this.membership;
 	}
-	
-
-	
+		
 	public void setMembership(Membership membership) {
 		this.membership = membership;
 	}
@@ -26,11 +29,6 @@ public class Customer extends Human{
 		this.trainer = trainer;
 	}
 
-	public Customer(String name, int age) {
-		super( name, age);
-		this.setId();
-	}
-	
 	
 	public int getId() {
 		return this.id;

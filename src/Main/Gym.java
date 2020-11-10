@@ -17,7 +17,7 @@ public class Gym {
 	
 	public static Gym getInstance() {
 		if(instance == null)	
-			return new Gym();
+			instance = new Gym();
 		return instance;
 	}
 	

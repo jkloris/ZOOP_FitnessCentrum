@@ -12,7 +12,7 @@ public class Product {
 		this.setDescription(description);
 		this.setName(name);
 		this.setSellPrice(costPrice * 2);
-		this.setCount(1);
+		this.setCount(1);	
 	}
 	
 	public Product(String name, String description, float costPrice, float sellPrice) {
