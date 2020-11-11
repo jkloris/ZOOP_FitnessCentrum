@@ -17,23 +17,24 @@ public class Main {
 		Customer on = new Customer("On", 18);
 		Customer ona = new Customer("Ona", 45);
 		Customer ono = new Customer("Ono", 15);
-		Trainer tr1 = new Trainer("Trendo", 23, "kardio", 10);
+		//Trainer tr1 = new Trainer("Trendo", 23, "kardio", 10);
 		
 		
 		Gym gym = Gym.getInstance();
 		
+		gym.loop();
 		
-		StoreManager store = StoreManager.getInstance();
-		store.restock(new Product("BCAA", "regen", 9.99f));
-		store.restock(new Product("Protein", "regen", 4.99f));
-		store.restock(new Product("Protein_deluxe", "regen", 9.5f));
-		store.restock(new Product("Proteinova tycinka", "regen", 3.99f));
-		store.restock(new Product("Protein", "regen", 9.99f));
-		store.restock(new Product("Protein", "regen", 9.99f));
-		store.restock(new Product("Protein", "regen", 9.99f));
-		
-		
-		store.showProductsInStock();
+//		StoreManager store = StoreManager.getInstance();
+//		store.restock(new Product("BCAA", "regen", 9.99f));
+//		store.restock(new Product("Protein", "regen", 4.99f));
+//		store.restock(new Product("Protein_deluxe", "regen", 9.5f));
+//		store.restock(new Product("Proteinova tycinka", "regen", 3.99f));
+//		store.restock(new Product("Protein", "regen", 9.99f));
+//		store.restock(new Product("Protein", "regen", 9.99f));
+//		store.restock(new Product("Protein", "regen", 9.99f));
+//		
+//		
+//		store.showProductsInStock();
 		
 //		gym.customerManager.customerArrived(gym.customerManager.identifyCustomer("Ja", 21));
 //		gym.customerManager.registerCustomer(ja);

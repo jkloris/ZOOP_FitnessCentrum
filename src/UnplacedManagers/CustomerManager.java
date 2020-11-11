@@ -63,7 +63,7 @@ public class CustomerManager {
 	}
 	
 	public boolean registerCustomer(Customer customer) {
-		if(this.getRegCustomers().indexOf(customer) > 0) {
+		if(this.getRegCustomers().indexOf(customer) >= 0) {
 			System.out.println("Zakaznik uz bol registrovany");
 			return false;
 		}
@@ -78,6 +78,12 @@ public class CustomerManager {
 	
 	public ArrayList<Customer> getCustomersInside(){
 		return this.customersInside;
+	}
+	
+	public void showRegCustomers() {
+		for(Customer cust : this.getRegCustomers()) {
+			System.out.println(cust.getName() + " " + cust.getAge() + " " + cust.getId());
+		}
 	}
 	
 	public Customer identifyCustomer(int id) {

@@ -1,6 +1,7 @@
 package Main;
 import java.util.ArrayList;
 
+import Controllers.CommandController;
 import Lockers.LockerManager;
 import Pasiv.*;
 import Persons.*;
@@ -15,6 +16,7 @@ public class Gym {
 	public CustomerManager customerManager = CustomerManager.getInstance();
 	public StoreManager storeManager = StoreManager.getInstance();
 	public MembershipManager membershipManager = MembershipManager.getInstance();
+	public CommandController cmdController = CommandController.getInstance(customerManager, lockerManager, membershipManager, storeManager);
 	private Gym() {
 		
 	}
@@ -23,6 +25,13 @@ public class Gym {
 		if(instance == null)	
 			instance = new Gym();
 		return instance;
+	}
+	
+	
+	public void loop() {
+		while(true) {
+			cmdController.manageInput();
+		}
 	}
 	
 //	public void hireTrainer(Trainer trainer) {
