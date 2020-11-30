@@ -17,6 +17,18 @@ public class Trainer extends Human{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void introduceMyself() {
+		System.out.println("meno: "+ this.getName() +
+				"; vek: "+ this.getAge()+
+				"; specializacia: "+ this.getSkill() +
+				"; cena: " + this.price);
+		System.out.println("Zakaznici:");
+		this.showCustomers();
+		System.out.println("Terminy:");
+		this.getSchedule().showSchedule();
+		
+	}
+	
 	public Schedule getSchedule() {
 		return this.schedule;
 	}

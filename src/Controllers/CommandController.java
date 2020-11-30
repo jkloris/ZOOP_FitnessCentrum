@@ -99,9 +99,22 @@ public class CommandController {
 		case "ADM_LOGOUT":
 			this.admin = false;
 			break;
+		case "TR_INFO":
+			if(this.admin)
+				this.showInfoAboutTr();
+			break;
 		default:
 			System.out.println("Neznamy prikaz!");
 			break;
+		}
+	}
+	
+	private void showInfoAboutTr() {
+		System.out.println("Zadajte meno trenera:");
+		String name = scanner.next();
+		Trainer tr = this.owner.identifyTrener(name);
+		if(tr != null) {
+			tr.introduceMyself();
 		}
 	}
 	
@@ -112,6 +125,7 @@ public class CommandController {
 		Trainer trainer = this.owner.identifyTrener(tr_name);
 		if(trainer != null) {
 			customer.assignTrainer(trainer);
+			trainer.assignCustomer(customer);
 			System.out.println("Trener prideleny");
 		}
 		
@@ -241,6 +255,7 @@ public class CommandController {
 			System.out.println("HIRE_TR \t zamestnaj noveho trenera");
 			System.out.println("SHOW_U_REG \t ukaze registrovanych zakaznikov");
 			System.out.println("SHOW_U_IN \t ukaze zakaznikov v posilke");
+			System.out.println("TR_INFO \t info o trenerovi");
 		}
 	}
 	
