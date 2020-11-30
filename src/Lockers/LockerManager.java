@@ -5,7 +5,7 @@ import Persons.*;
 
 public class LockerManager {
 	private ArrayList<Locker> lockers = new ArrayList<Locker>();
-	private int maxCapacity = 4;
+	private int maxCapacity = 100;
 	private static LockerManager instance = null;
 	
 	private LockerManager() {

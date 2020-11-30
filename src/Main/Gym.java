@@ -12,11 +12,13 @@ import UnplacedManagers.StoreManager;
 public class Gym {
 	static Gym instance = null;
 	private ArrayList<Trainer> trainers = new ArrayList<Trainer>();
+	private Owner owner = new Owner("Dr. Trendo M.", 45, "vsetko", 10, this.trainers);
 	public LockerManager lockerManager = LockerManager.getInstance();
 	public CustomerManager customerManager = CustomerManager.getInstance();
 	public StoreManager storeManager = StoreManager.getInstance();
 	public MembershipManager membershipManager = MembershipManager.getInstance();
-	public CommandController cmdController = CommandController.getInstance(customerManager, lockerManager, membershipManager, storeManager);
+	public CommandController cmdController = CommandController.getInstance(customerManager, lockerManager, membershipManager, storeManager, owner);
+	
 	private Gym() {
 		
 	}
@@ -34,16 +36,5 @@ public class Gym {
 		}
 	}
 	
-//	public void hireTrainer(Trainer trainer) {
-//		this.getTrainers().add(trainer);
-//	}
-//	
-//	public boolean fireTrainer(Trainer trainer) {
-//		return this.getTrainers().remove(trainer);	
-//	}
-//	
-//	public ArrayList<Trainer> getTrainers(){
-//		return this.trainers;
-//	}
 
 }

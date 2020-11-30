@@ -21,7 +21,7 @@ public class Locker {
 		return this.number;
 	}
 	
-	boolean assignOccupant(Customer occupant){
+	public boolean assignOccupant(Customer occupant){
 		if(this.occupant == null || occupant == null)
 		{
 			this.occupant = occupant;

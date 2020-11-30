@@ -80,6 +80,12 @@ public class CustomerManager {
 		return this.customersInside;
 	}
 	
+	public void showCustomersIn() {
+		for(Customer cust : this.getCustomersInside()) {
+			System.out.println(cust.getName() + " " + cust.getAge() + " " + cust.getId());
+		}
+	}
+	
 	public void showRegCustomers() {
 		for(Customer cust : this.getRegCustomers()) {
 			System.out.println(cust.getName() + " " + cust.getAge() + " " + cust.getId());

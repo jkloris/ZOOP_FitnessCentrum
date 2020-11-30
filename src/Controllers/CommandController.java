@@ -15,20 +15,23 @@ public class CommandController {
 	public MembershipManager MM;
 	public StoreManager SM;
 	public Scanner scanner = new Scanner(System.in);
+	private Owner owner;		
 	private Customer user = null;
+	private boolean admin = false;
 	
 	
-	private CommandController(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM) {
+	private CommandController(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner) {
 		this.CM = CM;
 		this.LM = LM;
 		this.MM = MM;
 		this.SM = SM;
+		this.owner = owner;
 		
 	}
 	
-	public static CommandController getInstance(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM) {
+	public static CommandController getInstance(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner) {
 		if(instance == null)
-			instance = new CommandController(CM, LM,  MM, SM);
+			instance = new CommandController(CM, LM,  MM, SM, owner);
 		return instance;
 	}
 	
@@ -46,23 +49,58 @@ public class CommandController {
 			this.user = this.register(this.user);
 			break;
 		case "ARRIVE":
-			if(this.user != null)	
-				CM.customerArrived(this.user);
-			else
+			if(this.user != null) {
+				if(CM.customerArrived(this.user))
+					LM.assignLocker(this.user);
+			} else
+				System.out.println("Identifikuj sa");
+			break;
+		case "LEAVING":
+			if(this.user != null) {
+				CM.customerIsLeaving(this.user);
+			}else 
 				System.out.println("Identifikuj sa");
 			break;
 		case "BUY_MEMB":
 			this.buyMembership(user);
 			break;
+		case "SHOW_TR":
+			this.getOwner().showTrainers();
+			break;
 			
-			
-		//ADMIN cmds ..TODO
-		case "SHOW_U":			
-			CM.showRegCustomers();
+		//ADMIN cmds
+		case "SHOW_U_REG":	
+			if(this.admin)
+				CM.showRegCustomers();
+			break;
+		case "SHOW_U_IN":
+			if(this.admin)
+				CM.showCustomersIn();
+			break;
+		case "ADMIN":
+			this.adminLog();
+			break;
+		case "HIRE_TR":
+			if(this.admin)
+				this.addTrainer();	
+			break;
+		case "ADM_LOGOUT":
+			this.admin = false;
+			break;
 		default:
 			System.out.println("Neznamy prikaz!");
 			break;
 		}
+	}
+	
+	private void addTrainer() {
+		System.out.println("Zadajte meno, vek, plat a specializaciu trenera:");
+		String name = scanner.next();
+		int age = scanner.nextInt();
+		int price = scanner.nextInt();
+		String skill = scanner.next();
+		
+		owner.addTrainer(new Trainer(name, age, skill, price));
 	}
 	
 	private void buyMembership(Customer customer) {
@@ -154,5 +192,43 @@ public class CommandController {
 		System.out.println("REGISTER \t zaregistrovanie sa");
 		System.out.println("BUY_MEMB \t identifikovany zakaznik si moze kupit permanentku");
 		System.out.println("ARRIVE \t identifikovany zakaznik s platnou permanentkou vstupi do posilky");
+		System.out.println("ADMIN \t prihlasenie sa admina");
+		System.out.println("SHOW_TR \t ukaze trenerov ktorí su k dispozícií");
+		System.out.println("LEAVING \t prikaz zada zakaznik pri odchode");
+		if(this.admin) {
+			System.out.println("ADM_LOGOUT \t odhlasi admina");
+			System.out.println("HIRE_TR \t zamestnaj noveho trenera");
+			System.out.println("SHOW_U_REG \t ukaze registrovanych zakaznikov");
+			System.out.println("SHOW_U_IN \t ukaze zakaznikov v posilke");
+		}
+	}
+	
+	private Owner getOwner() {
+		return this.owner;
+	}
+//	public Owner getOwner(String password) {
+//		if(password == "heslo")
+//			return this.owner;
+//		System.out.println("Zle heslo");
+//		return null;
+//	}
+////	private boolean getAdmin() {
+//		return this.admin;
+//	}
+	
+	private boolean setAdmin(String password) {
+		System.out.println(password);
+		if(password.contentEquals("heslo123")) {
+			this.admin = true;
+			return true;
+		}
+		System.out.println("Zle heslo");
+		return false;
+	}
+	
+	private void adminLog() {
+		System.out.println("Zadajte heslo:");
+		String passw = scanner.next();
+		this.setAdmin(passw);
 	}
 }
