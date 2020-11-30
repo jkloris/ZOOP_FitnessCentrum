@@ -50,6 +50,10 @@ public class Trainer extends Human{
 		System.out.println("Zakaznik pridany");
 	}
 	
+//	public void assignTerminToCustomer(Customer customer, int day, int hour) {
+//		this.schedule.assignCustomer(customer, day, hour)
+//	}
+	
 	public void delCustomer(Customer customer) {
 		if(this.customers.remove(customer)) {
 			System.out.println("Zakaznik odstraneny");

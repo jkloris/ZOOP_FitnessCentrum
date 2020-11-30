@@ -39,9 +39,9 @@ public class Owner extends Trainer{
 		System.out.println("Trener nie je v systeme");
 	}
 	
-	public Trainer identifyTrener(String name, int age, String skill) {
+	public Trainer identifyTrener(String name) {
 		for(Trainer t : this.getTrainers()) {
-			if(t.getName() == name && this.getAge() == age && this.getSkill() == skill) {
+			if(name.contentEquals(t.getName() )) {
 				return t;
 			}
 		}

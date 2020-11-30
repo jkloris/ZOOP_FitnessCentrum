@@ -12,7 +12,7 @@ import UnplacedManagers.StoreManager;
 public class Gym {
 	static Gym instance = null;
 	private ArrayList<Trainer> trainers = new ArrayList<Trainer>();
-	private Owner owner = new Owner("Dr. Trendo M.", 45, "vsetko", 10, this.trainers);
+	private Owner owner = new Owner("Dr_Trendo", 45, "vsetko", 10, this.trainers);
 	public LockerManager lockerManager = LockerManager.getInstance();
 	public CustomerManager customerManager = CustomerManager.getInstance();
 	public StoreManager storeManager = StoreManager.getInstance();

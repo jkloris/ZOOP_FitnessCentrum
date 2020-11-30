@@ -17,8 +17,9 @@ public class Main {
 		Customer on = new Customer("On", 18);
 		Customer ona = new Customer("Ona", 45);
 		Customer ono = new Customer("Ono", 15);
-		//Trainer tr1 = new Trainer("Trendo", 23, "kardio", 10);
+		Trainer tr1 = new Trainer("Trendo", 23, "kardio", 10);
 		
+		//tr1.getSchedule().showSchedule();
 		
 		Gym gym = Gym.getInstance();
 		

@@ -67,6 +67,18 @@ public class CommandController {
 		case "SHOW_TR":
 			this.getOwner().showTrainers();
 			break;
+		case "CHOOSE_TR":
+			if(this.user != null) {
+				this.chooseTrainer(user);
+			}else
+				System.out.println("Identifikuj sa");
+			break;
+		case "CHOOSE_TG":
+			if(this.user != null) {
+				this.chooseTgTermin(user);
+			}else
+				System.out.println("Identifikuj sa");
+			break;
 			
 		//ADMIN cmds
 		case "SHOW_U_REG":	
@@ -91,6 +103,33 @@ public class CommandController {
 			System.out.println("Neznamy prikaz!");
 			break;
 		}
+	}
+	
+	private void chooseTrainer(Customer customer) {
+		System.out.println("Zadajte meno trenera:");
+		String tr_name = scanner.next();
+
+		Trainer trainer = this.owner.identifyTrener(tr_name);
+		if(trainer != null) {
+			customer.assignTrainer(trainer);
+			System.out.println("Trener prideleny");
+		}
+		
+	}
+	
+	private void chooseTgTermin(Customer customer) {
+		if(customer.getTrainer() != null) {
+			System.out.println("Zadajte hodinu treningu (9-20) a o kolko dni chcete trening (0-7):");
+			int hour = scanner.nextInt();
+			int day = scanner.nextInt();
+			if(hour < 9 || hour > 20 || day < 0 || day > 7) {
+				System.out.println("Zle zadane hodnoty!");
+				return;
+			}
+			customer.getTrainer().getSchedule().assignCustomer(customer, day, hour);
+			
+		} else
+			System.out.println("Nemate prideleneho trenera!");
 	}
 	
 	private void addTrainer() {
@@ -187,14 +226,16 @@ public class CommandController {
 	}
 	
 	private void helpCmd() {
-		System.out.println("HELP \t zoznam prikazov");
+		System.out.println("HELP \t\t zoznam prikazov");
 		System.out.println("IDENTIFY \t identifikovanie sa");
 		System.out.println("REGISTER \t zaregistrovanie sa");
 		System.out.println("BUY_MEMB \t identifikovany zakaznik si moze kupit permanentku");
-		System.out.println("ARRIVE \t identifikovany zakaznik s platnou permanentkou vstupi do posilky");
-		System.out.println("ADMIN \t prihlasenie sa admina");
+		System.out.println("ARRIVE \t\t identifikovany zakaznik s platnou permanentkou vstupi do posilky");
+		System.out.println("ADMIN \t\t prihlasenie sa admina");
 		System.out.println("SHOW_TR \t ukaze trenerov ktorí su k dispozícií");
 		System.out.println("LEAVING \t prikaz zada zakaznik pri odchode");
+		System.out.println("CHOOSE_TR \t priradi osobneho trenera");
+		System.out.println("CHOOSE_TG \t vytvori trening u osobneho trenera v zvolenom termine");
 		if(this.admin) {
 			System.out.println("ADM_LOGOUT \t odhlasi admina");
 			System.out.println("HIRE_TR \t zamestnaj noveho trenera");
