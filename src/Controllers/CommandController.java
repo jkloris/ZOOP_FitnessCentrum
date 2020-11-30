@@ -79,6 +79,13 @@ public class CommandController {
 			}else
 				System.out.println("Identifikuj sa");
 			break;
+		case "WHO":
+			if(this.user != null) {
+				this.user.introduceMyself();
+			}else
+				System.out.println("Identifikuj sa");
+			
+			break;
 			
 		//ADMIN cmds
 		case "SHOW_U_REG":	
@@ -250,6 +257,7 @@ public class CommandController {
 		System.out.println("LEAVING \t prikaz zada zakaznik pri odchode");
 		System.out.println("CHOOSE_TR \t priradi osobneho trenera");
 		System.out.println("CHOOSE_TG \t vytvori trening u osobneho trenera v zvolenom termine");
+		System.out.println("WHO \t zobrazi info o uzivatelovi");
 		if(this.admin) {
 			System.out.println("ADM_LOGOUT \t odhlasi admina");
 			System.out.println("HIRE_TR \t zamestnaj noveho trenera");

@@ -17,6 +17,7 @@ public class Trainer extends Human{
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
 	public void introduceMyself() {
 		System.out.println("meno: "+ this.getName() +
 				"; vek: "+ this.getAge()+

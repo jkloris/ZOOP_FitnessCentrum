@@ -1,6 +1,6 @@
 package Persons;
 
-public class Human {
+abstract class Human {
 private int age;
 private String name;
 
@@ -16,6 +16,8 @@ public int getAge() {
 public String getName() {
 	return name;
 }
+
+abstract void introduceMyself();
 
 
 }

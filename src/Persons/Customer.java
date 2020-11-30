@@ -1,5 +1,8 @@
 package Persons;
 import Pasiv.*;
+
+import java.text.SimpleDateFormat;
+
 import Lockers.*;
 
 public class Customer extends Human{
@@ -7,6 +10,7 @@ public class Customer extends Human{
 	private Locker locker;
 	private Trainer trainer;
 	private Membership membership;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
 	
 	public Customer(String name, int age) {
 		super( name, age);
@@ -43,6 +47,26 @@ public class Customer extends Human{
 	}
 	public void setLocker(Locker locker) {
 		this.locker = locker;
+	}
+
+	@Override
+	public void introduceMyself() {
+		System.out.println("meno: "+ this.getName() +
+				"; vek: " + this.getAge() +
+				"; id: " + this.getId() ); 
+		if(this.getLocker() != null)		
+			System.out.println("skrinka: " + this.getLocker().getLockerNumber()); 
+		if(this.getTrainer() != null)
+			System.out.println("trener: " + this.getTrainer().getName());
+		if(this.membership != null) {
+			System.out.println("Permanentka: " +this.membership.getType());
+			if(this.membership instanceof Membership_Visits) {
+				System.out.println("pocet vstupov: "+ this.membership.getVisitsLeft());
+			}else if(this.membership instanceof Membership_Term) {	
+				System.out.println("Platná do: " + this.sdf.format(this.membership.getExpDate().getTime()));
+			}
+		}
+		
 	}
 	
 	
