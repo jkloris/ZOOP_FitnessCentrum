@@ -36,26 +36,26 @@ public  class Membership {
 	}
 	
 	//metody pre Membership_Term
-	public int getTimePeriod() {
-		return 0;
-	}
-	
-	public Calendar getExpDate() {
-		return Calendar.getInstance();
-	}
-	
-	public void showExpDate() {};
+//	public int getTimePeriod() {
+//		return 0;
+//	}
+//	
+//	public Calendar getExpDate() {
+//		return Calendar.getInstance();
+//	}
+//	
+//	public void showExpDate() {};
 	
 	//metody pre Membership_Visits
-	public int getVisitsLeft() {
-		return 0;
-	}
-	
-	public void showVisitsLeft() {}
-	
-	public boolean remOneVisit() {
-		return false;
-	}
+//	public int getVisitsLeft() {
+//		return 0;
+//	}
+//	
+//	public void showVisitsLeft() {}
+//	
+//	public boolean remOneVisit() {
+//		return false;
+//	}
 	
 	
 }

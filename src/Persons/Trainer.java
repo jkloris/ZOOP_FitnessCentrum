@@ -7,14 +7,14 @@ public class Trainer extends Human{
 	private int price;
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
 	private Schedule schedule;
-	//TODO schedule
+	
 	
 	public Trainer(String name, int age, String skill, int price) {
 		super(name, age);
 		this.price = price;
 		this.skill = skill;
 		this.schedule = new Schedule();
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	@Override

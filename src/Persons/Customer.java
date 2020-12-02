@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 
 import Lockers.*;
 
-public class Customer extends Human{
+public class Customer extends Human {
 	private int id;
 	private Locker locker;
 	private Trainer trainer;
@@ -61,9 +61,9 @@ public class Customer extends Human{
 		if(this.membership != null) {
 			System.out.println("Permanentka: " +this.membership.getType());
 			if(this.membership instanceof Membership_Visits) {
-				System.out.println("pocet vstupov: "+ this.membership.getVisitsLeft());
+				System.out.println("pocet vstupov: "+ ((Membership_Visits)membership).getVisitsLeft());
 			}else if(this.membership instanceof Membership_Term) {	
-				System.out.println("Platná do: " + this.sdf.format(this.membership.getExpDate().getTime()));
+				System.out.println("Platná do: " + this.sdf.format(((Membership_Term)membership).getExpDate().getTime()));
 			}
 		}
 		
