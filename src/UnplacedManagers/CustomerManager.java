@@ -1,10 +1,13 @@
 package UnplacedManagers;
 import java.util.ArrayList;
+import java.util.Random;
+
+import Interface.Generatable;
 import Pasiv.*;
 
 import Persons.Customer;
 
-public class CustomerManager {
+public class CustomerManager implements Generatable{
 	private static CustomerManager instance = null;
 	private ArrayList<Customer> regCustomers = new ArrayList<Customer>();
 	private ArrayList<Customer> customersInside = new ArrayList<Customer>();
@@ -112,6 +115,16 @@ public class CustomerManager {
 	public Customer identifyCustomer(String name, int age) {
 		int id = age * name.hashCode();
 		return identifyCustomer(id);
+	}
+
+	@Override
+	public void randomG() {
+		Random r = new Random();
+		int rnd_name = r.nextInt(Generatable.names.length );
+		int rnd_surname = r.nextInt(Generatable.surnames.length );
+		int rnd_age = r.nextInt(40) + 15 ;
+		this.getRegCustomers().add(new Customer(Generatable.names[rnd_name]+"_"+Generatable.surnames[rnd_surname], rnd_age)) ;
+		
 	}
 	
 	

@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import Lockers.*;
 
 public class Customer extends Human {
-	private int id;
+	private long id;
 	private Locker locker;
 	private Trainer trainer;
 	private Membership membership;
@@ -34,12 +34,12 @@ public class Customer extends Human {
 	}
 
 	
-	public int getId() {
+	public long getId() {
 		return this.id;
 	}
 	
 	public void setId() {
-		this.id = this.getAge()*this.getName().hashCode();
+		this.id = Math.abs(this.getAge()*this.getName().hashCode());
 	}
 	
 	public Locker getLocker() {

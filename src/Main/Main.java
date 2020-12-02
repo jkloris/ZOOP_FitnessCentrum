@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-public class Main {
+public class Main  {
 
 	public static void main(String[] args) {
 		Customer ja = new Customer("Ja", 21);
@@ -18,10 +18,10 @@ public class Main {
 		Customer ona = new Customer("Ona", 45);
 		Customer ono = new Customer("Ono", 15);
 		Trainer tr1 = new Trainer("Trendo", 23, "kardio", 10);
-		//tr1.getSchedule().showSchedule();
+		// tr1.getSchedule().showSchedule();
 		
 		Gym gym = Gym.getInstance();
-		
+		gym.generate(20);
 		gym.loop();
 		
 //		StoreManager store = StoreManager.getInstance();
@@ -69,5 +69,7 @@ public class Main {
 		//tr1.getSchedule().showSchedule();
 		
 	}
+	
+
 
 }

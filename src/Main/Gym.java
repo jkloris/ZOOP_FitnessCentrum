@@ -1,7 +1,9 @@
 package Main;
 import java.util.ArrayList;
+import java.util.Random;
 
 import Controllers.CommandController;
+import Interface.Generatable;
 import Lockers.LockerManager;
 import Pasiv.*;
 import Persons.*;
@@ -19,6 +21,7 @@ public class Gym {
 	public MembershipManager membershipManager = MembershipManager.getInstance();
 	public CommandController cmdController = CommandController.getInstance(customerManager, lockerManager, membershipManager, storeManager, owner);
 	
+	public ArrayList<Generatable> gener = new ArrayList<Generatable>();
 	private Gym() {
 		
 	}
@@ -33,6 +36,22 @@ public class Gym {
 	public void loop() {
 		while(true) {
 			cmdController.manageInput();
+		}
+	}
+	
+	//nahodne vygenerovanie objektov
+	public void generate(int amount) {
+		//pocetnost jednotlivych objektov v poli urcuje pravdepodobnost s akou sa objekt vygeneruje
+		gener.add(customerManager);
+		gener.add(customerManager);
+		gener.add(customerManager);
+		gener.add(owner);
+		
+		Random r = new Random();
+		for(int i = 0; i < amount; i++) {
+			int rnd = r.nextInt(gener.size());
+			
+			gener.get(rnd).randomG();
 		}
 	}
 	

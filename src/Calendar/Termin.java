@@ -21,7 +21,8 @@ public class Termin {
 	protected boolean setCustomer(Customer customer) {
 		if(this.customer == null) {
 			this.customer = customer;
-			System.out.println("termin priradeny");
+			if(!customer.getName().equals("Lunch Break"))
+				System.out.println("termin priradeny");
 			return true;
 		}
 		System.out.println("Termin je obsadeny");

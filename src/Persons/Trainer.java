@@ -1,8 +1,9 @@
 package Persons;
 import Calendar.Schedule;
+
 import java.util.ArrayList;
 
-public class Trainer extends Human{
+public class Trainer extends Human {
 	private String skill;
 	private int price;
 	private ArrayList<Customer> customers = new ArrayList<Customer>();
@@ -85,5 +86,8 @@ public class Trainer extends Human{
 		}
 		System.out.println("Zakaznik nebol v zozname");
 	}
+
+	
+	
 	
 }
