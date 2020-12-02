@@ -1,9 +1,10 @@
 package UnplacedManagers;
+import Interface.Revenue;
 import Pasiv.*;
 import Persons.Customer;
-public class MembershipManager {
+public class MembershipManager implements Revenue {
 	private static MembershipManager instance = null;
-	private float MemRevenue = 1000.0f;
+	private float MemRevenue = 100.0f;
  
  
 	private MembershipManager() {}
@@ -25,7 +26,7 @@ public class MembershipManager {
 	
 	public void sellMembership(Customer customer, Membership membership) {
 		customer.setMembership(membership);
-		this.setMemRevenue(this.getMemRevenue() + membership.getPrice());
+		this.setMemRevenue(increaseProfit(this.getMemRevenue(), membership.getPrice()));
 	}
 
 

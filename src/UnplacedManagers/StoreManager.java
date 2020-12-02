@@ -2,7 +2,9 @@ package UnplacedManagers;
 import Pasiv.Product;
 import java.util.ArrayList;
 
-public class StoreManager {
+import Interface.Revenue;
+
+public class StoreManager implements Revenue{
 	private static StoreManager instance = null;
 	private ArrayList<Product> productsInStock = new ArrayList<Product>();
 	private float storeRevenue = 1000;
@@ -46,7 +48,7 @@ public class StoreManager {
 			if(i == this.getProductsInStock().size()) {
 				this.getProductsInStock().add(product);
 			}
-			this.setStoreRevenue(this.getStoreRevenue() - product.getCostPrice());
+			this.setStoreRevenue(decreaseProfit(this.getStoreRevenue(), product.getCostPrice()));
 			return true;
 		}
 		System.out.println("Nedostatok penazi");
@@ -55,13 +57,17 @@ public class StoreManager {
 	
 	public boolean sellProduct(Product product) {
 		int index = this.getProductsInStock().indexOf(product);
+		Product p = this.getProductsInStock().get(index);
 		if( index >= 0 ) {
 			System.out.println("Nakup prebehol uspesne");
-			int count = this.getProductsInStock().get(index).getCount();
+			int count = p.getCount();
 			if( count > 1) {
-				this.getProductsInStock().get(index).setCount(count - 1);
+				p.setCount(count - 1);
+				this.setStoreRevenue(increaseProfit(this.getStoreRevenue(), p.getCostPrice()));
+				
 			}else if(count == 1) {
-				this.getProductsInStock().get(index).setCount(count - 1);
+				this.setStoreRevenue(increaseProfit(this.getStoreRevenue(), p.getCostPrice()));
+				p.setCount(count - 1);
 				System.out.println("Tento produkt bol posledny na sklade");
 			}else {
 				System.out.println("Produkt nie je na sklade");
