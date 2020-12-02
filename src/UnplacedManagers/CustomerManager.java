@@ -66,6 +66,7 @@ public class CustomerManager {
 			customer.setMembership(null);
 		}
 		this.customersInside.remove(customer);
+		customer.setLocker(null);
 	}
 	
 	public boolean registerCustomer(Customer customer) {
