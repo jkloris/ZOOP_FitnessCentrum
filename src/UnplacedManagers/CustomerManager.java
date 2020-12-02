@@ -36,13 +36,19 @@ public class CustomerManager {
 		if(this.getCustomerLimit() > this.getCustomersInside().size()) {
 			
 			if(this.getRegCustomers().indexOf(customer) >= 0 ) {
-				if( customer.getMembership()!= null && customer.getMembership().onArrival()) {
-					this.getCustomersInside().add(customer);
+				if(this.getCustomersInside().indexOf(customer) < 0) {
 					
-					System.out.println("Mozete ist cvicit");
-					return true;
-				} else {
-					System.out.println("Nemate platnu permanentku");	
+					if( customer.getMembership()!= null && customer.getMembership().onArrival()) {
+						this.getCustomersInside().add(customer);
+					
+						System.out.println("Mozete ist cvicit");
+						return true;
+					} else {
+							System.out.println("Nemate platnu permanentku");	
+							return false;
+					}
+				}else {
+					System.out.println("Uz ste v posilke");
 					return false;
 				}
 			}else {
