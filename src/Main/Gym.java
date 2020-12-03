@@ -46,6 +46,7 @@ public class Gym {
 		gener.add(customerManager);
 		gener.add(customerManager);
 		gener.add(owner);
+		gener.add(storeManager);
 		
 		Random r = new Random();
 		for(int i = 0; i < amount; i++) {

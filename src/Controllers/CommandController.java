@@ -84,8 +84,17 @@ public class CommandController {
 				this.user.introduceMyself();
 			}else
 				System.out.println("Identifikuj sa");
-			
 			break;
+		case "SHOP_STOCK":
+			SM.showProductsInStock();
+			break;
+		case "TO_SHOP":
+			if(this.user != null) {
+				this.toShop();
+			}else
+				System.out.println("Identifikuj sa");
+			break;
+			
 			
 		//ADMIN cmds
 		case "SHOW_U_REG":	
@@ -110,9 +119,52 @@ public class CommandController {
 			if(this.admin)
 				this.showInfoAboutTr();
 			break;
+		case "RESTOCK":
+			if(this.admin) {
+				this.restock();
+			}
+			break;
 		default:
 			System.out.println("Neznamy prikaz!");
 			break;
+		}
+	}
+	
+	//umoznuje doplnit zasoby v obchode
+	private void restock() {
+		System.out.println("Aky produkt chcete doplnit?");
+		String name = scanner.next();
+		Product p = SM.identify(name);
+		if(p == null) {
+			System.out.println("Zadajte nakupnu cenu:");
+			int price = scanner.nextInt();
+			System.out.println("Zadajte popis produktu:");
+			String description  = scanner.next() + scanner.nextLine();
+			p = new Product(name,description,price);
+		}
+		System.out.println("Zadajte pocet kusov:");
+		int amount = scanner.nextInt();
+		for(int i = 0; i < amount; i++) {
+			SM.restock(p);
+		}
+	}
+	
+	private void toShop() {
+		System.out.println("Zadajte nazov produktu a pocet kusov:");
+		String name = scanner.next();
+		int amount = scanner.nextInt();
+		Product p = SM.identify(name);
+		if(p != null) {
+			int count = 0;
+			for(int i = 0; i < amount; i++) {
+				if(SM.sellProduct(p)) {
+					count++;
+				}
+			}
+			System.out.println("Ucet: " + name + ", "+ count+"ks, cena: " + p.getSellPrice()*count + "€");
+			
+		}else {
+			System.out.println("Tento product v obchode nie je");
 		}
 	}
 	
@@ -257,13 +309,16 @@ public class CommandController {
 		System.out.println("LEAVING \t prikaz zada zakaznik pri odchode");
 		System.out.println("CHOOSE_TR \t priradi osobneho trenera");
 		System.out.println("CHOOSE_TG \t vytvori trening u osobneho trenera v zvolenom termine");
-		System.out.println("WHO \t zobrazi info o uzivatelovi");
+		System.out.println("WHO \t \t zobrazi info o uzivatelovi");
+		System.out.println("SHOP_STOCK \t zobrazi produkty v obchode");
+		System.out.println("TO_SHOP \t zakaznik si moze nakupit produkty");
 		if(this.admin) {
 			System.out.println("ADM_LOGOUT \t odhlasi admina");
 			System.out.println("HIRE_TR \t zamestnaj noveho trenera");
 			System.out.println("SHOW_U_REG \t ukaze registrovanych zakaznikov");
 			System.out.println("SHOW_U_IN \t ukaze zakaznikov v posilke");
 			System.out.println("TR_INFO \t info o trenerovi");
+			System.out.println("RESTOCK \t dopln zasoby v obchode");
 		}
 	}
 	
