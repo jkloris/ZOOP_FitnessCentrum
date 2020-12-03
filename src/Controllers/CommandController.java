@@ -112,6 +112,10 @@ public class CommandController {
 			if(this.admin)
 				this.addTrainer();	
 			break;
+		case "FIRE_TR":
+			if(this.admin)
+				this.fireTrainer();	
+			break;
 		case "ADM_LOGOUT":
 			this.admin = false;
 			break;
@@ -128,6 +132,19 @@ public class CommandController {
 			System.out.println("Neznamy prikaz!");
 			break;
 		}
+	}
+	
+	//vyhod trenera
+	private void fireTrainer() {
+		System.out.println("Zadajte meno trenera:");
+		String name = scanner.next();
+		Trainer t = owner.identifyTrener(name);
+		if(t != null) {
+			owner.delTrainer(t);
+			System.out.println("Trener vyhodeny");
+			return;
+		}
+		System.out.println("Taky trener tu nie je zamestany");
 	}
 	
 	//umoznuje doplnit zasoby v obchode
@@ -315,6 +332,7 @@ public class CommandController {
 		if(this.admin) {
 			System.out.println("ADM_LOGOUT \t odhlasi admina");
 			System.out.println("HIRE_TR \t zamestnaj noveho trenera");
+			System.out.println("FIRE_TR \t vyhod trenera");
 			System.out.println("SHOW_U_REG \t ukaze registrovanych zakaznikov");
 			System.out.println("SHOW_U_IN \t ukaze zakaznikov v posilke");
 			System.out.println("TR_INFO \t info o trenerovi");
