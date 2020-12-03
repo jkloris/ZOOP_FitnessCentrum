@@ -2,7 +2,9 @@ package Persons;
 import Pasiv.*;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 
+import Calendar.Termin;
 import Lockers.*;
 
 public class Customer extends Human {
@@ -10,6 +12,7 @@ public class Customer extends Human {
 	private Locker locker;
 	private Trainer trainer;
 	private Membership membership;
+	private ArrayList<Termin> trainings = new ArrayList<Termin>();
 	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
 	
 	public Customer(String name, int age) {
@@ -23,6 +26,18 @@ public class Customer extends Human {
 		
 	public void setMembership(Membership membership) {
 		this.membership = membership;
+	}
+	
+	public ArrayList<Termin> getTrainings(){
+		return this.trainings;
+	}
+	
+	public void showMyTrainings() {
+		
+		System.out.println("Treningy s trenerom " + this.getTrainer().getName());
+		for(Termin t : this.getTrainings()) {
+			t.showTermin(1);
+		}
 	}
 	
 	public Trainer getTrainer() {

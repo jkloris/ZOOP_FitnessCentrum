@@ -6,6 +6,7 @@ import Pasiv.*;
 
 import java.util.Scanner;
 
+import Calendar.Termin;
 import Lockers.LockerManager;
 
 public class CommandController {
@@ -94,6 +95,12 @@ public class CommandController {
 			}else
 				System.out.println("Identifikuj sa");
 			break;
+		case "SHOW_TGS":
+		if(this.user != null) {
+			this.user.showMyTrainings();
+		}else
+			System.out.println("Identifikuj sa");
+		break;
 			
 			
 		//ADMIN cmds
@@ -217,6 +224,7 @@ public class CommandController {
 				return;
 			}
 			customer.getTrainer().getSchedule().assignCustomer(customer, day, hour);
+			customer.getTrainings().add(new Termin(day, hour));
 			
 		} else
 			System.out.println("Nemate prideleneho trenera!");
@@ -329,6 +337,7 @@ public class CommandController {
 		System.out.println("WHO \t \t zobrazi info o uzivatelovi");
 		System.out.println("SHOP_STOCK \t zobrazi produkty v obchode");
 		System.out.println("TO_SHOP \t zakaznik si moze nakupit produkty");
+		System.out.println("SHOW_TGS \t ukaze terminy zakaznikovych treningov");
 		if(this.admin) {
 			System.out.println("ADM_LOGOUT \t odhlasi admina");
 			System.out.println("HIRE_TR \t zamestnaj noveho trenera");

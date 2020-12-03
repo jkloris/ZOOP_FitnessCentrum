@@ -10,7 +10,7 @@ public class Termin {
 	private Customer customer = null;
 	private SimpleDateFormat sdf = new SimpleDateFormat("| YYYY dd. MMM HH:mm |");
 	
-	protected Termin(int day, int hour) {
+	public Termin(int day, int hour) {
 		this.date = Calendar.getInstance();
 		this.date.set(Calendar.WEEK_OF_YEAR, this.date.get(Calendar.WEEK_OF_YEAR) + 1 );
 		this.date.set(Calendar.DAY_OF_WEEK, day );
