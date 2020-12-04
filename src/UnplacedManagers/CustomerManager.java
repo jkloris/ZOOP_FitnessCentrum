@@ -11,7 +11,7 @@ public class CustomerManager implements Generatable{
 	private static CustomerManager instance = null;
 	private ArrayList<Customer> regCustomers = new ArrayList<Customer>();
 	private ArrayList<Customer> customersInside = new ArrayList<Customer>();
-	private int customerLimit = 50;
+	private int customerLimit = 6;
 	
 	private CustomerManager() {
 		
@@ -113,7 +113,7 @@ public class CustomerManager implements Generatable{
 	}
 	
 	public Customer identifyCustomer(String name, int age) {
-		int id = age * name.hashCode();
+		int id = Math.abs(age*name.hashCode());
 		return identifyCustomer(id);
 	}
 
