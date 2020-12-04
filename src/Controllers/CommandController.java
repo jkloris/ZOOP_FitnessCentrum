@@ -137,14 +137,31 @@ public class CommandController {
 			if(this.admin) {
 				this.restock();
 			}
+			break;
 		case "SHOW_BANK":
 			if(this.admin) {
 				System.out.println(gym.getRevenue() + "€");
 			}
 			break;
+		case "LIMIT":
+			if(this.admin) {
+				this.customerLimit();
+			}
+			break;
 		default:
 			System.out.println("Neznamy prikaz!");
 			break;
+		}
+	}
+	
+	private void customerLimit() {
+		System.out.println("Maximalny pocet zakaznikov v posilke je: " + CM.getCustomerLimit());
+		System.out.println("Chcete ho zmenit? y/n");
+		char f = scanner.next().charAt(0);
+		if(f == 'y') {
+			System.out.println("Zadajte novy limit:");
+			int l = scanner.nextInt();
+			CM.setCustomerLimit(l);
 		}
 	}
 	
@@ -355,6 +372,7 @@ public class CommandController {
 			System.out.println("TR_INFO \t info o trenerovi");
 			System.out.println("RESTOCK \t dopln zasoby v obchode");
 			System.out.println("SHOW_BANK \t zobrazi peniaze na ucte");
+			System.out.println("LIMIT \t\t zobrazi maximalny pocet zakaznikov v posilke a umozni ho zmenit");
 			
 		}
 	}
