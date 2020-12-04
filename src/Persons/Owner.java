@@ -5,7 +5,7 @@ import java.util.Random;
 import Interface.Generatable;
 import UnplacedManagers.StoreManager;
 public class Owner extends Trainer implements Generatable{
-	public StoreManager store = StoreManager.getInstance();
+	//public StoreManager store = StoreManager.getInstance();
 	private ArrayList<Trainer> trainers; 
 	
 	

@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import Calendar.Termin;
 import Lockers.LockerManager;
+import Main.Gym;
 
 public class CommandController {
 	private static CommandController instance = null;
@@ -19,20 +20,22 @@ public class CommandController {
 	private Owner owner;		
 	private Customer user = null;
 	private boolean admin = false;
+	private Gym gym; 
 	
 	
-	private CommandController(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner) {
+	private CommandController(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner, Gym gym) {
 		this.CM = CM;
 		this.LM = LM;
 		this.MM = MM;
 		this.SM = SM;
 		this.owner = owner;
+		this.gym = gym;
 		
 	}
 	
-	public static CommandController getInstance(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner) {
+	public static CommandController getInstance(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner, Gym gym) {
 		if(instance == null)
-			instance = new CommandController(CM, LM,  MM, SM, owner);
+			instance = new CommandController(CM, LM,  MM, SM, owner, gym);
 		return instance;
 	}
 	
@@ -134,12 +137,17 @@ public class CommandController {
 			if(this.admin) {
 				this.restock();
 			}
+		case "SHOW_BANK":
+			if(this.admin) {
+				System.out.println(gym.getRevenue() + "€");
+			}
 			break;
 		default:
 			System.out.println("Neznamy prikaz!");
 			break;
 		}
 	}
+	
 	
 	//vyhod trenera
 	private void fireTrainer() {
@@ -346,6 +354,8 @@ public class CommandController {
 			System.out.println("SHOW_U_IN \t ukaze zakaznikov v posilke");
 			System.out.println("TR_INFO \t info o trenerovi");
 			System.out.println("RESTOCK \t dopln zasoby v obchode");
+			System.out.println("SHOW_BANK \t zobrazi peniaze na ucte");
+			
 		}
 	}
 	

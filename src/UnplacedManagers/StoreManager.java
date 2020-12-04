@@ -5,28 +5,30 @@ import java.util.ArrayList;
 
 import Interface.Generatable;
 import Interface.Revenue;
+import Main.Gym;
 
 public class StoreManager implements Revenue, Generatable {
 	private static StoreManager instance = null;
 	private ArrayList<Product> productsInStock = new ArrayList<Product>();
-	private float storeRevenue = 1000f;
-
-	private StoreManager() {
+	private Gym gym;
+	
+	private StoreManager(Gym gym) {
+		this.gym = gym;
 	}
 
-	public static StoreManager getInstance() {
+	public static StoreManager getInstance(Gym gym) {
 		if (instance == null)
-			instance = new StoreManager();
+			instance = new StoreManager(gym);
 		return instance;
 	}
 
-	public void setStoreRevenue(float money) {
-		this.storeRevenue = money;
-	}
+//	public void setStoreRevenue(float money) {
+//		this.storeRevenue = money;
+//	}
 
-	public float getStoreRevenue() {
-		return this.storeRevenue;
-	}
+//	public float getStoreRevenue() {
+//		return this.storeRevenue;
+//	}
 
 	public ArrayList<Product> getProductsInStock() {
 		return this.productsInStock;
@@ -43,7 +45,7 @@ public class StoreManager implements Revenue, Generatable {
 
 	public boolean restock(Product product) {
 		int i;
-		if (this.getStoreRevenue() - product.getCostPrice() >= 0) {
+		if (this.gym.getRevenue() - product.getCostPrice() >= 0) {
 			for (i = 0; i < this.getProductsInStock().size(); i++) {
 				if (product.getName() == this.getProductsInStock().get(i).getName()) {
 					this.getProductsInStock().get(i).setCount(this.getProductsInStock().get(i).getCount() + 1);
@@ -53,7 +55,7 @@ public class StoreManager implements Revenue, Generatable {
 			if (i == this.getProductsInStock().size()) {
 				this.getProductsInStock().add(product);
 			}
-			this.setStoreRevenue(decreaseProfit(this.getStoreRevenue(), product.getCostPrice()));
+			this.gym.setRevenue(decreaseProfit(this.gym.getRevenue(), product.getCostPrice()));
 			return true;
 		}
 		System.out.println("Nedostatok penazi");
@@ -68,11 +70,11 @@ public class StoreManager implements Revenue, Generatable {
 			int count = p.getCount();
 			if (count > 1) {
 				p.setCount(count - 1);
-				this.setStoreRevenue(increaseProfit(this.getStoreRevenue(), p.getSellPrice()));
+				this.gym.setRevenue(increaseProfit(this.gym.getRevenue(), p.getSellPrice()));
 				System.out.println("Nakup prebehol uspesne");	
 				return true;
 			} else if (count == 1) {
-				this.setStoreRevenue(increaseProfit(this.getStoreRevenue(), p.getSellPrice()));
+				this.gym.setRevenue(increaseProfit(this.gym.getRevenue(), p.getSellPrice()));
 				p.setCount(count - 1);
 				System.out.println("Nakup prebehol uspesne");
 				System.out.println("Tento produkt bol posledny na sklade");
@@ -107,5 +109,10 @@ public class StoreManager implements Revenue, Generatable {
 		}
 		
 		
+	}
+
+	@Override
+	public void onDeal(float bank) {
+		this.gym.setRevenue(bank);
 	}
 }

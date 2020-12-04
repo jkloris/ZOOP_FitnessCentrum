@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class Termin {
 	private Calendar date;
 	private Customer customer = null;
-	private SimpleDateFormat sdf = new SimpleDateFormat("| YYYY dd. MMM HH:mm |");
+	private final SimpleDateFormat sdf = new SimpleDateFormat("| YYYY dd. MMM HH:mm |");
 	
 	public Termin(int day, int hour) {
 		this.date = Calendar.getInstance();

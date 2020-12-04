@@ -13,13 +13,14 @@ import UnplacedManagers.StoreManager;
 
 public class Gym {
 	static Gym instance = null;
+	private float revenue = 1000;
 	private ArrayList<Trainer> trainers = new ArrayList<Trainer>();
 	private Owner owner = new Owner("Dr_Trendo", 45, "vsetko", 10, this.trainers);
 	public LockerManager lockerManager = LockerManager.getInstance();
 	public CustomerManager customerManager = CustomerManager.getInstance();
-	public StoreManager storeManager = StoreManager.getInstance();
-	public MembershipManager membershipManager = MembershipManager.getInstance();
-	public CommandController cmdController = CommandController.getInstance(customerManager, lockerManager, membershipManager, storeManager, owner);
+	public StoreManager storeManager = StoreManager.getInstance(this);
+	public MembershipManager membershipManager = MembershipManager.getInstance(this);
+	public CommandController cmdController = CommandController.getInstance(customerManager, lockerManager, membershipManager, storeManager, owner, this);
 	
 	public ArrayList<Generatable> gener = new ArrayList<Generatable>();
 	private Gym() {
@@ -55,6 +56,16 @@ public class Gym {
 			gener.get(rnd).randomG();
 		}
 	}
+
+	public float getRevenue() {
+		return revenue;
+	}
+
+	public void setRevenue(float revenue) {
+		this.revenue = revenue;
+	}
+	
+	
 	
 
 }

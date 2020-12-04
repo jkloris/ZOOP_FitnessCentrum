@@ -3,7 +3,7 @@ import Persons.Customer;
 
 public class Locker {
 	private Customer occupant = null ;
-	private int number;
+	private final int number;
 	
 	public Locker(int number) {
 		this.number = number;
