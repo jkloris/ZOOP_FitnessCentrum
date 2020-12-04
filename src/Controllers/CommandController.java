@@ -10,6 +10,7 @@ import Calendar.Termin;
 import Lockers.LockerManager;
 import Main.Gym;
 
+//simuluje konzolovu aplikaciu 
 public class CommandController {
 	private static CommandController instance = null;
 	public CustomerManager CM;
@@ -39,6 +40,7 @@ public class CommandController {
 		return instance;
 	}
 	
+	//kontroluje input pouzivatela a nasledne odpoveda
 	public void manageInput() {
 		System.out.println("HELP pre zoznam prikazov");
 		String command = scanner.next();
@@ -154,6 +156,7 @@ public class CommandController {
 		}
 	}
 	
+	//zobrazi max pocet zakaznikov v posilke a umozni tuto hodnotu zmenit
 	private void customerLimit() {
 		System.out.println("Maximalny pocet zakaznikov v posilke je: " + CM.getCustomerLimit());
 		System.out.println("Chcete ho zmenit? y/n");
@@ -166,7 +169,7 @@ public class CommandController {
 	}
 	
 	
-	//vyhod trenera
+	//vyhodi trenera
 	private void fireTrainer() {
 		System.out.println("Zadajte meno trenera:");
 		String name = scanner.next();
@@ -198,6 +201,7 @@ public class CommandController {
 		}
 	}
 	
+	//identifikuje zadany produkt a ak taky je na sklade, preda mu zadany pocet
 	private void toShop() {
 		System.out.println("Zadajte nazov produktu a pocet kusov:");
 		String name = scanner.next();
@@ -217,6 +221,7 @@ public class CommandController {
 		}
 	}
 	
+	//identifikuje trenera a zobrazi info o nom
 	private void showInfoAboutTr() {
 		System.out.println("Zadajte meno trenera:");
 		String name = scanner.next();
@@ -226,6 +231,7 @@ public class CommandController {
 		}
 	}
 	
+	//priradi zadaneho trenera k zakaznikovi a zakaznika do zoznamu zakaznikov daneho trenera 
 	private void chooseTrainer(Customer customer) {
 		System.out.println("Zadajte meno trenera:");
 		String tr_name = scanner.next();
@@ -238,7 +244,7 @@ public class CommandController {
 		}
 		
 	}
-	
+	//Zakaznik si vyberie termin treningu (musi mat trenera)
 	private void chooseTgTermin(Customer customer) {
 		if(customer.getTrainer() != null) {
 			System.out.println("Zadajte hodinu treningu (9-20) a o kolko dni chcete trening (0-7):");
@@ -255,6 +261,7 @@ public class CommandController {
 			System.out.println("Nemate prideleneho trenera!");
 	}
 	
+	//zamestna trenera
 	private void addTrainer() {
 		System.out.println("Zadajte meno, vek, plat a specializaciu trenera:");
 		String name = scanner.next();
@@ -265,6 +272,7 @@ public class CommandController {
 		owner.addTrainer(new Trainer(name, age, skill, price));
 	}
 	
+	//zakaznik si odklika aku permanentku si chce kupit
 	private void buyMembership(Customer customer) {
 		if(customer == null) {
 			System.out.println("Najprv sa identifikujte");
@@ -313,7 +321,7 @@ public class CommandController {
 		}
 		
 	}
-	
+	//registracia zakaznika
 	private Customer register(Customer customer) {
 		if(customer != null) {
 			CM.registerCustomer(customer);
@@ -331,7 +339,7 @@ public class CommandController {
 		return customer;
 	}
 	
-	
+	//zobrazi dolezite info o identifikovanom zakaznikovi
 	private Customer getUserInfo() {
 		System.out.println("Zadajte meno a vek:");
 		String name = scanner.next();
@@ -347,7 +355,7 @@ public class CommandController {
 		}
 		return null;
 	}
-	
+	//vysvetlivky
 	private void helpCmd() {
 		System.out.println("HELP \t\t zoznam prikazov");
 		System.out.println("IDENTIFY \t identifikovanie sa");
@@ -380,16 +388,8 @@ public class CommandController {
 	private Owner getOwner() {
 		return this.owner;
 	}
-//	public Owner getOwner(String password) {
-//		if(password == "heslo")
-//			return this.owner;
-//		System.out.println("Zle heslo");
-//		return null;
-//	}
-////	private boolean getAdmin() {
-//		return this.admin;
-//	}
-	
+
+	//kontrola hesla admina
 	private boolean setAdmin(String password) {
 		System.out.println(password);
 		if(password.contentEquals("heslo123")) {
@@ -399,7 +399,7 @@ public class CommandController {
 		System.out.println("Zle heslo");
 		return false;
 	}
-	
+	//prihlasenia admina do systemu - utvori nove prikazy
 	private void adminLog() {
 		System.out.println("Zadajte heslo:");
 		String passw = scanner.next();
