@@ -3,13 +3,11 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Interface.Generatable;
-import UnplacedManagers.StoreManager;
+
+//majitel posilky, ma vacsie prava
 public class Owner extends Trainer implements Generatable{
-	//public StoreManager store = StoreManager.getInstance();
-	private ArrayList<Trainer> trainers; 
-	
-	
-	
+	private ArrayList<Trainer> trainers; //zoznam trenerov v posilke
+		
 	public Owner(String name, int age, String skill, int price, ArrayList<Trainer> trainers ) {
 		super(name, age, skill, price);
 		this.trainers = trainers;
@@ -31,7 +29,7 @@ public class Owner extends Trainer implements Generatable{
 												+ "€ specializacia: " + trainer.getSkill());
 		}
 	}
-	
+	//vymaze trenera zo zoznamu
 	public void delTrainer(Trainer trainer) {
 		if(this.getTrainers().indexOf(trainer) >= 0) {
 			this.getTrainers().remove(trainer);
@@ -41,6 +39,7 @@ public class Owner extends Trainer implements Generatable{
 		System.out.println("Trener nie je v systeme");
 	}
 	
+	//identifikuje trenera na zaklade mena
 	public Trainer identifyTrener(String name) {
 		for(Trainer t : this.getTrainers()) {
 			if(name.contentEquals(t.getName() )) {
@@ -53,7 +52,7 @@ public class Owner extends Trainer implements Generatable{
 
 
 	@Override
-	public void randomG() {
+	public void randomG() { //nahodne generovanie trenerov (meno, plat, specializacia, vek)
 		Random r = new Random();
 		int rnd_name = r.nextInt(Generatable.names.length );
 		int rnd_surname = r.nextInt(Generatable.surnames.length );

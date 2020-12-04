@@ -7,9 +7,10 @@ import Interface.Generatable;
 import Interface.Revenue;
 import Main.Gym;
 
+//spravca produktov a jeho hospodarenie
 public class StoreManager implements Revenue, Generatable {
 	private static StoreManager instance = null;
-	private ArrayList<Product> productsInStock = new ArrayList<Product>();
+	private ArrayList<Product> productsInStock = new ArrayList<Product>(); //zoznam produktov
 	private Gym gym;
 	
 	private StoreManager(Gym gym) {
@@ -22,18 +23,12 @@ public class StoreManager implements Revenue, Generatable {
 		return instance;
 	}
 
-//	public void setStoreRevenue(float money) {
-//		this.storeRevenue = money;
-//	}
-
-//	public float getStoreRevenue() {
-//		return this.storeRevenue;
-//	}
 
 	public ArrayList<Product> getProductsInStock() {
 		return this.productsInStock;
 	}
-
+	
+	//zobrazi katalog produktov
 	public void showProductsInStock() {
 		for (int i = 0; i < this.getProductsInStock().size(); i++) {
 			System.out.print(
@@ -43,18 +38,20 @@ public class StoreManager implements Revenue, Generatable {
 		}
 	}
 
+	//doplni do zasob zadany produkt
 	public boolean restock(Product product) {
 		int i;
-		if (this.gym.getRevenue() - product.getCostPrice() >= 0) {
-			for (i = 0; i < this.getProductsInStock().size(); i++) {
+		if (this.gym.getRevenue() - product.getCostPrice() >= 0) { //kontrola, ci je na ucte dost penazi
+			for (i = 0; i < this.getProductsInStock().size(); i++) { //hlada produkt
 				if (product.getName() == this.getProductsInStock().get(i).getName()) {
 					this.getProductsInStock().get(i).setCount(this.getProductsInStock().get(i).getCount() + 1);
-					break;
+					break;	//ak ho najde zvysi pocet produktov na sklade
 				}
 			}
-			if (i == this.getProductsInStock().size()) {
+			if (i == this.getProductsInStock().size()) { //.. ak nie vytvori novy produkt
 				this.getProductsInStock().add(product);
 			}
+			//stiahne peniaze z uctu
 			this.gym.setRevenue(decreaseProfit(this.gym.getRevenue(), product.getCostPrice()));
 			return true;
 		}
@@ -62,13 +59,14 @@ public class StoreManager implements Revenue, Generatable {
 		return false;
 	}
 
+	//pokusi sa predat produkt
 	public boolean sellProduct(Product product) {
 		int index = this.getProductsInStock().indexOf(product);
 		Product p = this.getProductsInStock().get(index);
 		if (index >= 0) {
-			
+			//
 			int count = p.getCount();
-			if (count > 1) {
+			if (count > 1) { //na sklade musi byt aspon jeden produkt
 				p.setCount(count - 1);
 				this.gym.setRevenue(increaseProfit(this.gym.getRevenue(), p.getSellPrice()));
 				System.out.println("Nakup prebehol uspesne");	
@@ -98,7 +96,7 @@ public class StoreManager implements Revenue, Generatable {
 	}
 
 	@Override
-	public void randomG() {
+	public void randomG() { //vygeneruje zadane produkty
 		for(int i = 0; i < 4; i++) {
 			
 			this.restock(new Product("Proteinova_tycinka", "80g tycinka s 20% obsahom proteinu", 1f));
@@ -112,7 +110,7 @@ public class StoreManager implements Revenue, Generatable {
 	}
 
 	@Override
-	public void onDeal(float bank) {
+	public void onDeal(float bank) { //aktualizacia globalnych financii
 		this.gym.setRevenue(bank);
 	}
 }

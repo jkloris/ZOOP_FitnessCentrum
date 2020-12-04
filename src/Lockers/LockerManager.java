@@ -1,11 +1,11 @@
 package Lockers;
-//import Persons.Customer;
 import java.util.ArrayList;
 import Persons.*;
 
+//spravca skriniek
 public class LockerManager {
 	private ArrayList<Locker> lockers = new ArrayList<Locker>();
-	private int maxCapacity = 100;
+	private int maxCapacity = 100; //pocet skriniek
 	private static LockerManager instance = null;
 	
 	private LockerManager() {
@@ -20,6 +20,7 @@ public class LockerManager {
 		return instance;
 	}
 	
+	//zobrazi ci je skrinka volna alebo obsadena
 	public void showAllLockers() {
 	
 		for(int i = 0; i < this.maxCapacity; i++) {
@@ -30,6 +31,7 @@ public class LockerManager {
 		}
 	}
 	
+	//priradi volnu skrinku, ak zakaznik uz nejaku nema
 	public boolean assignLocker(Customer customer) {
 		for(int i = 0; i < this.maxCapacity; i++) {
 			if(this.lockers.get(i).assignOccupant(customer)) {
@@ -46,6 +48,7 @@ public class LockerManager {
 		return false;
 	}
 	
+	//uvolni skrinku
 	public void freeLocker(Customer customer) {
 		System.out.println("Skrinka cislo: "+ customer.getLocker().getLockerNumber() +" uvolnena");
 		this.lockers.get(customer.getLocker().getLockerNumber()).assignOccupant(null);

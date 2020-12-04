@@ -1,17 +1,18 @@
 package Pasiv;
 
+//predajny produkt do obchodu
 public class Product {
 	private float costPrice;
 	private float sellPrice;
 	private String name;
-	private String description;
-	private int count;
+	private String description; //opis produktu
+	private int count; //pocet kusov na sklade
 	
 	public Product(String name, String description, float costPrice) {
 		this.setCostPrice(costPrice);
 		this.setDescription(description);
 		this.setName(name);
-		this.setSellPrice(costPrice * 2);
+		this.setSellPrice(costPrice * 2); //predajna cena je 2x vyssia ako nakupna
 		this.setCount(1);	
 	}
 	

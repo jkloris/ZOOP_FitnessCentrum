@@ -1,6 +1,7 @@
 package Pasiv;
 //import java.util.Calendar;
 
+//rodicovky objekt pre Membershipy, priamo sa nepouziva ale vyuziva sa cez polymorfizmus
 import Persons.*;
 public  class Membership {
 	private String type;
@@ -26,7 +27,7 @@ public  class Membership {
 	public int getPrice() {
 		return this.price;
 	}
-	
+	//spusti sa pri vstupe zakaznika do posilky
 	public boolean onArrival() {
 		return true;
 	}
@@ -35,27 +36,7 @@ public  class Membership {
 		this.price = price;
 	}
 	
-	//metody pre Membership_Term
-//	public int getTimePeriod() {
-//		return 0;
-//	}
-//	
-//	public Calendar getExpDate() {
-//		return Calendar.getInstance();
-//	}
-//	
-//	public void showExpDate() {};
-	
-	//metody pre Membership_Visits
-//	public int getVisitsLeft() {
-//		return 0;
-//	}
-//	
-//	public void showVisitsLeft() {}
-//	
-//	public boolean remOneVisit() {
-//		return false;
-//	}
+
 	
 	
 }

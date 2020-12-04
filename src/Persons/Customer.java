@@ -7,13 +7,14 @@ import java.util.ArrayList;
 import Calendar.Termin;
 import Lockers.*;
 
+//zakaznik posilky
 public class Customer extends Human {
 	private long id;
 	private Locker locker;
 	private Trainer trainer;
 	private Membership membership;
-	private ArrayList<Termin> trainings = new ArrayList<Termin>();
-	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
+	private ArrayList<Termin> trainings = new ArrayList<Termin>(); //zoznam treningov
+	private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy MMM dd HH:mm:ss");
 	
 	public Customer(String name, int age) {
 		super( name, age);
@@ -32,6 +33,7 @@ public class Customer extends Human {
 		return this.trainings;
 	}
 	
+	//zobrazi treningy zakaznika
 	public void showMyTrainings() {
 		
 		System.out.println("Treningy s trenerom " + this.getTrainer().getName());
@@ -43,7 +45,7 @@ public class Customer extends Human {
 	public Trainer getTrainer() {
 		return this.trainer;
 	}
-	
+	//priradi trenera
 	public void assignTrainer(Trainer trainer) {
 		this.trainer = trainer;
 	}
@@ -52,7 +54,7 @@ public class Customer extends Human {
 	public long getId() {
 		return this.id;
 	}
-	
+	//id sa vypocita na zaklade mena a veku
 	public void setId() {
 		this.id = Math.abs(this.getAge()*this.getName().hashCode());
 	}
@@ -65,15 +67,17 @@ public class Customer extends Human {
 	}
 
 	@Override
-	public void introduceMyself() {
+	public void introduceMyself() { //vypise info o zakaznikovi
 		System.out.println("meno: "+ this.getName() +
 				"; vek: " + this.getAge() +
 				"; id: " + this.getId() ); 
 		if(this.getLocker() != null)		
 			System.out.println("skrinka: " + this.getLocker().getLockerNumber()); 
+		
 		if(this.getTrainer() != null)
 			System.out.println("trener: " + this.getTrainer().getName());
-		if(this.membership != null) {
+		
+		if(this.membership != null) { //podla druhu permanentky vypise jej platnost
 			System.out.println("Permanentka: " +this.membership.getType());
 			if(this.membership instanceof Membership_Visits) {
 				System.out.println("pocet vstupov: "+ ((Membership_Visits)membership).getVisitsLeft());

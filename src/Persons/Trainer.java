@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Trainer extends Human {
 	private String skill;
 	private int price;
-	private ArrayList<Customer> customers = new ArrayList<Customer>();
+	private ArrayList<Customer> customers = new ArrayList<Customer>(); //zoznam zakaznikov, ktorych trenuje
 	private Schedule schedule;
 	
 	
@@ -19,7 +19,7 @@ public class Trainer extends Human {
 	}
 	
 	@Override
-	public void introduceMyself() {
+	public void introduceMyself() { //vypisanie dolezitych info o trenerovi
 		System.out.println("meno: "+ this.getName() +
 				"; vek: "+ this.getAge()+
 				"; specializacia: "+ this.getSkill() +
@@ -53,20 +53,18 @@ public class Trainer extends Human {
 		this.price = price;
 	}
 
-	public void showCustomers() {
+	public void showCustomers() { //vypisanie vsetkych zakaznikov
 		for(int i = 0; i < this.customers.size(); i++) {
 			System.out.println(this.customers.get(i).getName()+ ' ' + this.customers.get(i).getAge());
 		}		
 	}
 
-	public void assignCustomer(Customer customer) {
+	public void assignCustomer(Customer customer) { //priradenie zakaznika
 		this.customers.add(customer);
 		System.out.println("Zakaznik pridany");
 	}
 	
-//	public void assignTerminToCustomer(Customer customer, int day, int hour) {
-//		this.schedule.assignCustomer(customer, day, hour)
-//	}
+
 	
 	public void delCustomer(Customer customer) {
 		if(this.customers.remove(customer)) {

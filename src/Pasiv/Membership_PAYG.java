@@ -1,5 +1,6 @@
 package Pasiv;
 
+//jednorazova permanentka, pri odchode by sa mala vymazat
 public class Membership_PAYG extends Membership {
 
 	public Membership_PAYG() {

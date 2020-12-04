@@ -5,6 +5,7 @@ import Persons.Customer;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+//Jedna hodina v tyzdni vyhradena pre trening
 public class Termin {
 	private Calendar date;
 	private Customer customer = null;
@@ -18,9 +19,11 @@ public class Termin {
 		this.date.set(Calendar.MINUTE, 0);
 	}
 	
+	//priradi zakaznika na tento termin
 	protected boolean setCustomer(Customer customer) {
 		if(this.customer == null) {
 			this.customer = customer;
+			//nazaciatku sa nastavia obedne pauzy a zbytocne sa vypisovala fraza "termin priradeny", tak toto to osetruje
 			if(!customer.getName().equals("Lunch Break"))
 				System.out.println("termin priradeny");
 			return true;
@@ -29,6 +32,7 @@ public class Termin {
 		return false;
 	}
 	
+	//len ukaze termin, 2 moznosti vypisu
 	public void showTermin(int ln) {
 		if(ln == 1)
 			System.out.println(sdf.format(this.getDate().getTime()));
@@ -45,6 +49,7 @@ public class Termin {
 		return this.customer;
 	}
 	
+	//zobrazi zakaznika alebo volny termin
 	public void showCustomer() {
 		System.out.print("Zakaznik: ");
 		if(this.getCustomer() != null)

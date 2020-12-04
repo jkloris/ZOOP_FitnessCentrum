@@ -7,11 +7,12 @@ import Pasiv.*;
 
 import Persons.Customer;
 
+//managuje zakaznikov
 public class CustomerManager implements Generatable{
 	private static CustomerManager instance = null;
-	private ArrayList<Customer> regCustomers = new ArrayList<Customer>();
-	private ArrayList<Customer> customersInside = new ArrayList<Customer>();
-	private int customerLimit = 6;
+	private ArrayList<Customer> regCustomers = new ArrayList<Customer>(); //registrovany zakaznici
+	private ArrayList<Customer> customersInside = new ArrayList<Customer>(); //zakaznici v posilke
+	private int customerLimit = 6;//max pocet zakaznikov v posilke
 	
 	private CustomerManager() {
 		
@@ -35,12 +36,14 @@ public class CustomerManager implements Generatable{
 		}
 	}
 	
+	//ked pride zakaznik do posilky...
 	public boolean customerArrived(Customer customer) {
-		if(this.getCustomerLimit() > this.getCustomersInside().size()) {
+		if(this.getCustomerLimit() > this.getCustomersInside().size()) { //..skontroluje ci nie je plno
 			
-			if(this.getRegCustomers().indexOf(customer) >= 0 ) {
-				if(this.getCustomersInside().indexOf(customer) < 0) {
+			if(this.getRegCustomers().indexOf(customer) >= 0 ) { //..ci je zakaznik registrovany
+				if(this.getCustomersInside().indexOf(customer) < 0) { //..ci uz nie je vo vnutri
 					
+					//..ci ma platnu permanentku a ak ano, vykona s nou to co ma
 					if( customer.getMembership()!= null && customer.getMembership().onArrival()) {
 						this.getCustomersInside().add(customer);
 					
@@ -64,6 +67,7 @@ public class CustomerManager implements Generatable{
 		}
 	}
 	
+	//ak zakaznik odchadza z posilky, odstrani ho zo zoznamu a vymaze jednorazovu permanentku
 	public void customerIsLeaving(Customer customer) {
 		if(customer.getMembership() instanceof Membership_PAYG) {
 			customer.setMembership(null);
@@ -72,6 +76,7 @@ public class CustomerManager implements Generatable{
 		customer.setLocker(null);
 	}
 	
+	//pridanie zakaznika do zoznamu registrovanych zakaznikov
 	public boolean registerCustomer(Customer customer) {
 		if(this.getRegCustomers().indexOf(customer) >= 0) {
 			System.out.println("Zakaznik uz bol registrovany");
@@ -102,6 +107,7 @@ public class CustomerManager implements Generatable{
 		}
 	}
 	
+	//identifikuje zakaznika na zaklade id
 	public Customer identifyCustomer(int id) {
 		for(int i = 0; i < this.getRegCustomers().size(); i++) {
 			if(this.getRegCustomers().get(i).getId() == id) {
@@ -112,13 +118,14 @@ public class CustomerManager implements Generatable{
 		return null;
 	}
 	
+	//identifikuje na zaklade mena
 	public Customer identifyCustomer(String name, int age) {
 		int id = Math.abs(age*name.hashCode());
 		return identifyCustomer(id);
 	}
 
 	@Override
-	public void randomG() {
+	public void randomG() { //nahodne vygenerovanie registrovanych zakaznikov
 		Random r = new Random();
 		int rnd_name = r.nextInt(Generatable.names.length );
 		int rnd_surname = r.nextInt(Generatable.surnames.length );

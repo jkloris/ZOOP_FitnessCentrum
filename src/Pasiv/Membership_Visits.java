@@ -1,5 +1,6 @@
 package Pasiv;
 
+//permanentka na pocet vstupov
 public class Membership_Visits extends Membership{
 	private int visitsLeft;
 	private int numOfVisits;
@@ -7,7 +8,7 @@ public class Membership_Visits extends Membership{
 	public Membership_Visits(int numOfVisits) {
 		super();
 		this.setVisits(numOfVisits);
-		this.setPrice(numOfVisits*3 - numOfVisits);
+		this.setPrice(numOfVisits*3 - numOfVisits); //vypocet ceny aj so zlavou
 		this.setType(numOfVisits + "-vstupova");
 	}
 	
@@ -25,6 +26,7 @@ public class Membership_Visits extends Membership{
 		System.out.println(this.getVisitsLeft());
 	}
 	
+	//odstrani jeden vstup z permanentky a oboznamuje o zostavajucom pocte vstupov
 	public boolean remOneVisit() {
 		if(this.getVisitsLeft() > 1) {
 			this.setVisits(this.getVisitsLeft() - 1);
@@ -39,7 +41,7 @@ public class Membership_Visits extends Membership{
 		return true;
 	}
 	
-	
+	//pri vstupe do posilky zisti ci ma dost vstupov na permanenke a ak ako, jeden zmaze
 	public boolean onArrival() {
 		if(this.remOneVisit())
 			return true;
