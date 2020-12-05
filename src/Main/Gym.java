@@ -3,9 +3,8 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Controllers.CommandController;
-import Interface.Generatable;
+import Interfaces.Generatable;
 import Lockers.LockerManager;
-import Pasiv.*;
 import Persons.*;
 import UnplacedManagers.CustomerManager;
 import UnplacedManagers.MembershipManager;
@@ -63,6 +62,12 @@ public class Gym {
 
 	public void setRevenue(float revenue) {
 		this.revenue = revenue;
+	}
+	
+	public static void main(String[] args) {
+		Gym gym = Gym.getInstance();
+		gym.generate(20);
+		gym.loop();
 	}
 	
 	

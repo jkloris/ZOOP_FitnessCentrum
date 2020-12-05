@@ -1,5 +1,5 @@
 package UnplacedManagers;
-import Interface.Revenue;
+import Interfaces.Revenue;
 import Main.Gym;
 import Pasiv.*;
 import Persons.Customer;

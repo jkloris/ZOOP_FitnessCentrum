@@ -8,9 +8,9 @@ import Pasiv.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
+//testovacia trieda
 public class Main  {
-
+ 
 	public static void main(String[] args) {
 		Customer ja = new Customer("Ja", 21);
 		Customer ty = new Customer("TY", 25);
@@ -21,8 +21,7 @@ public class Main  {
 		// tr1.getSchedule().showSchedule();
 		
 		Gym gym = Gym.getInstance();
-		gym.generate(20);
-		gym.loop();
+		
 		
 //		StoreManager store = StoreManager.getInstance();
 //		store.restock(new Product("BCAA", "regen", 9.99f));

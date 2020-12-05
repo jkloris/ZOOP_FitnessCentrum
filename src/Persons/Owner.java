@@ -2,7 +2,7 @@ package Persons;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Interface.Generatable;
+import Interfaces.Generatable;
 
 //majitel posilky, ma vacsie prava
 public class Owner extends Trainer implements Generatable{

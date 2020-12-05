@@ -2,7 +2,7 @@ package UnplacedManagers;
 import java.util.ArrayList;
 import java.util.Random;
 
-import Interface.Generatable;
+import Interfaces.Generatable;
 import Pasiv.*;
 
 import Persons.Customer;

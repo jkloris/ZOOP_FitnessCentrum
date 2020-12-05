@@ -341,20 +341,37 @@ public class CommandController {
 	
 	//zobrazi dolezite info o identifikovanom zakaznikovi
 	private Customer getUserInfo() {
-		System.out.println("Zadajte meno a vek:");
-		String name = scanner.next();
-		int age = scanner.nextInt();
-		if(name instanceof String && age > 0) {
-			Customer  user = CM.identifyCustomer(name, age);
-			if(user != null) {
+		System.out.println("Zadajte svoje ID alebo svoje meno a vek:");
+		String flag = scanner.next();
+	
+		int id = 0;
+		try {
+			id = Integer.parseInt(flag);
+		} catch (NumberFormatException nfe) {
+			int age = scanner.nextInt();
+			Customer user = CM.identifyCustomer(flag, age);
+
+			if (user != null) {
 				System.out.println("Vitajte!");
 				return user;
+			}else {
+				System.out.println("Neregistrovany uzivatel");
+				return null;
 			}
-		}else {
-			System.out.println("Zle vlozene hodnoty");
 		}
-		return null;
+		Customer user = CM.identifyCustomer(id);
+		if(user != null) {
+			System.out.println("Vitajte!");
+			return user;
+		}else {
+			System.out.println("Neregistrovany uzivatel");
+			return null;
+		}
+		
 	}
+		
+		
+		
 	//vysvetlivky
 	private void helpCmd() {
 		System.out.println("HELP \t\t zoznam prikazov");

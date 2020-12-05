@@ -3,8 +3,8 @@ package UnplacedManagers;
 import Pasiv.Product;
 import java.util.ArrayList;
 
-import Interface.Generatable;
-import Interface.Revenue;
+import Interfaces.Generatable;
+import Interfaces.Revenue;
 import Main.Gym;
 
 //spravca produktov a jeho hospodarenie
