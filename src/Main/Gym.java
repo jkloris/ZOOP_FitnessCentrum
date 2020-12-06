@@ -12,6 +12,7 @@ import UnplacedManagers.StoreManager;
 
 public class Gym {
 	static Gym instance = null;
+	public boolean start = true;
 	private float revenue = 1000;
 	private ArrayList<Trainer> trainers = new ArrayList<Trainer>();
 	private Owner owner = new Owner("Dr_Trendo", 45, "vsetko", 10, this.trainers);
@@ -34,9 +35,10 @@ public class Gym {
 	
 	
 	public void loop() {
-		while(true) {
+		while(start) {
 			cmdController.manageInput();
 		}
+		System.out.println("Aplikacia ukoncena..");
 	}
 	
 	//nahodne vygenerovanie objektov

@@ -107,6 +107,9 @@ public class CommandController {
 		}else
 			System.out.println("Identifikuj sa");
 		break;
+		case "EXIT":
+			gym.start = false;
+			break;
 			
 			
 		//ADMIN cmds
