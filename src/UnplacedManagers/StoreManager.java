@@ -9,9 +9,9 @@ import Main.Gym;
 
 //spravca produktov a jeho hospodarenie
 public class StoreManager implements Revenue, Generatable {
-	private static StoreManager instance = null;
 	private ArrayList<Product> productsInStock = new ArrayList<Product>(); //zoznam produktov
 	private Gym gym;
+	private static StoreManager instance = null;
 	
 	private StoreManager(Gym gym) {
 		this.gym = gym;

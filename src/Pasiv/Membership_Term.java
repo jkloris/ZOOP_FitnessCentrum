@@ -47,8 +47,7 @@ public class Membership_Term extends Membership {
 			System.out.println("Platnost permanentky vyprsala");
 			return false;
 		}
-		return true;
-		
+		return true;	
 	}
 
 	

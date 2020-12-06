@@ -24,7 +24,8 @@ public class CommandController {
 	private Gym gym; 
 	
 	
-	private CommandController(CustomerManager CM, LockerManager LM, MembershipManager MM, StoreManager SM, Owner owner, Gym gym) {
+	private CommandController(CustomerManager CM, LockerManager LM,
+			MembershipManager MM, StoreManager SM, Owner owner, Gym gym) {
 		this.CM = CM;
 		this.LM = LM;
 		this.MM = MM;
@@ -189,10 +190,17 @@ public class CommandController {
 		Product p = SM.identify(name);
 		if(p == null) {
 			System.out.println("Zadajte nakupnu cenu:");
-			int price = scanner.nextInt();
+			float price = scanner.nextFloat();
 			System.out.println("Zadajte popis produktu:");
 			String description  = scanner.next() + scanner.nextLine();
-			p = new Product(name,description,price);
+			System.out.println("Chcete specifikovat predajnú cenu? y/n");
+			char y = scanner.next().charAt(0);
+			if(y == 'y') {
+				System.out.println("Tak ju zadajte:");
+				float sellPrice = scanner.nextFloat();
+				p = new Product(name, description, price, sellPrice);
+			}else
+				p = new Product(name,description,price);
 		}
 		System.out.println("Zadajte pocet kusov:");
 		int amount = scanner.nextInt();

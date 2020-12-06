@@ -18,6 +18,4 @@ abstract class Human {
 	}
 
 	abstract void introduceMyself();
-
-
 }
