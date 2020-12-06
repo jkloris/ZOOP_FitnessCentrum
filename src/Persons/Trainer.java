@@ -19,7 +19,7 @@ public class Trainer extends Human {
 	}
 	
 	@Override
-	public void introduceMyself() { //vypisanie dolezitych info o trenerovi
+	public final void introduceMyself() { //vypisanie dolezitych info o trenerovi
 		System.out.println("meno: "+ this.getName() +
 				"; vek: "+ this.getAge()+
 				"; specializacia: "+ this.getSkill() +
